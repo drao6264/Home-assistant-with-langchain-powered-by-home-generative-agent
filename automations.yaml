@@ -1,0 +1,21 @@
+- alias: "LangChain Assistant Trigger"
+  description: "Passes natural language commands to LangChain for processing devices and Temi"
+  trigger:
+    - platform: state
+      entity_id: input_text.assistant_command
+  condition:
+    - condition: template
+      value_template: >
+        {{ states('input_text.assistant_command') | trim() != '' and not states('input_text.assistant_command') | lower | trim() | startswith('temi,') }}
+  action:
+    - service: system_log.write
+      data:
+        level: info
+        message: "LangChain Assistant received: {{ states('input_text.assistant_command') }}"
+    - service: python_script.langchain_handler
+      data_template:
+        command: "{{ states('input_text.assistant_command') }}"
+    - service: input_text.set_value
+      data:
+        entity_id: input_text.assistant_command
+        value: ""

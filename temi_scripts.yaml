@@ -1,0 +1,98 @@
+temi_goto_home_base:
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "RoboConnect/Temi_Robot/serviceHandler/Location/set"
+        payload: "home base"
+        qos: 0
+        retain: false
+    - delay: "00:00:20"
+    # Uncomment and replace with your TTS target if available:
+    # - service: tts.google_translate_say
+    #   data:
+    #     entity_id: media_player.living_room_speaker
+    #     message: "I have reached home base. How can I assist you further?"
+
+temi_goto_kitchen:
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "RoboConnect/Temi_Robot/serviceHandler/Location/set"
+        payload: "kitchen sink"
+        qos: 0
+        retain: false
+    - delay: "00:00:20"
+    # - service: tts.google_translate_say
+    #   data:
+    #     entity_id: media_player.living_room_speaker
+    #     message: "I have arrived in the kitchen. What can I do for you?"
+
+temi_goto_dining_table:
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "RoboConnect/Temi_Robot/serviceHandler/Location/set"
+        payload: "dining table"
+        qos: 0
+        retain: false
+    - delay: "00:00:20"
+    # - service: tts.google_translate_say
+    #   data:
+    #     entity_id: media_player.living_room_speaker
+    #     message: "I am at the dining table. How may I help you?"
+
+temi_goto_sofa:
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "RoboConnect/Temi_Robot/serviceHandler/Location/set"
+        payload: "sofa"
+        qos: 0
+        retain: false
+    - delay: "00:00:20"
+    # - service: tts.google_translate_say
+    #   data:
+    #     entity_id: media_player.living_room_speaker
+    #     message: "I have reached the sofa area. Do you need any assistance?"
+
+temi_goto_bedroom_a:
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "RoboConnect/Temi_Robot/serviceHandler/Location/set"
+        payload: "bedroom a"
+        qos: 0
+        retain: false
+    - delay: "00:00:20"
+    # - service: tts.google_translate_say
+    #   data:
+    #     entity_id: media_player.living_room_speaker
+    #     message: "I have arrived in bedroom A. How can I help?"
+
+temi_goto_bedroom_b:
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "RoboConnect/Temi_Robot/serviceHandler/Location/set"
+        payload: "bedroom b"
+        qos: 0
+        retain: false
+    - delay: "00:00:20"
+    # - service: tts.google_translate_say
+    #   data:
+    #     entity_id: media_player.living_room_speaker
+    #     message: "I am now in bedroom B. What do you need?"
+
+temi_goto_bathroom:
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "RoboConnect/Temi_Robot/serviceHandler/Location/set"
+        payload: "bathroom"
+        qos: 0
+        retain: false
+    - delay: "00:00:20"
+    # - service: tts.google_translate_say
+    #   data:
+    #     entity_id: media_player.living_room_speaker
+    #     message: "I have reached the bathroom. Do you require any help?"

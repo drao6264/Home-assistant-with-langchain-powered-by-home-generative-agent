@@ -1,0 +1,41 @@
+default_config:
+
+# === INPUT ===
+input_text:
+  assistant_command:
+    name: Assistant Command
+    initial: ""
+    max: 255
+
+# === SCRIPT LOADING ===
+script: !include temi_scripts.yaml
+
+# === PYTHON SCRIPTS ENABLE ===
+python_script:
+
+# === AUTOMATION FOR LANGCHAIN NLP HANDLER ===
+automation:
+  - alias: "LangChain Command Handler"
+    description: "Send assistant_command input to the LangChain NLP processor"
+    trigger:
+      - platform: state
+        entity_id: input_text.assistant_command
+    condition:
+      - condition: template
+        value_template: "{{ states('input_text.assistant_command') | trim() != '' }}"
+    action:
+      - service: python_script.langchain_handler
+        data:
+          command: "{{ states('input_text.assistant_command') }}"
+      - delay: "00:00:01"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.assistant_command
+          value: ""
+
+# === LOGGER (OPTIONAL) ===
+logger:
+  default: warning
+  logs:
+    custom_components.home_generative_agent: debug
+    python_script.langchain_handler: debug
